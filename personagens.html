@@ -87,26 +87,44 @@
         Pesquise seu personagem!
       </h2>
       <p class="text-center">
-        Conheça os personagens aqui. Clique pelo número e veja todas as características desse personagem!
+        Conheça os personagens aqui. Insira o nome do pokémon ou digite um número de 1 à 898!
       </p>
     </div>
-    <div>
-      <form name="frmCEP">	
-        Pokemon: <input type="text" name="Pokemon" id="CEP" maxlength="8">	
-        <input type="button" name="btnCEP" value="Pesquisar Poke" onclick="PesquisarPoke(document.frmCEP.CEP.value);">
-        <br> <br>
-        <label>Pokemon name:</label>
-        <input type="text" name="name" id="name" size="60"/> <br><br>
-        <label>Experiencia base:</label>
-        <input type="text" name="exp" id="exp" size="60"/> <br><br>
-        <label>Test source:</label>
-        <input type="text" name="source" id="source" size="60"/> <br><br>
-        </form>
-    
-        <img src="" alt="" id="pokeImagePrevious" width="100px">
-        <img src="" alt="" id="pokeImage" width="120px">
-        <img src="" alt="" id="pokeImageAfter" width="100px">
-    </div>
+    <div class="pokeBox">
+      <div class="pokeform">
+        <form name="frmPoke">	
+          Pokemon: <input type="text" name="Pokemon" id="POKE" size="45">	
+          <input type="button" name="btnPOKE" value="Pesquisar Poke" onclick="PesquisarPoke(document.frmPoke.POKE.value);">
+          <br> <br>
+          <label>Pokemon name:</label>
+          <input type="text" name="name" id="name" size="60"/> <br><br>
+          <label>Experiencia base:</label>
+          <input type="text" name="exp" id="exp" size="60"/> <br><br>
+          <label>Test source:</label>
+          </form>
+          <div class="pokeTabela">
+            <div class="anterior">
+              <img src="" alt="" id="pokeImagePrevious" width="50px">
+              <p>Anterior</p>
+            </div>
+            
+            <div class="atual">
+              <img src="" alt="" id="pokeImage" width="200px">
+              <h2 id="pokeName"></h2>
+              <div class="tipo">
+                <h3 id="tipo1"></h3>
+                <h3 id="tipo2"></h3>
+              </div>
+            </div>
+            
+            <div class="proximo">
+              <img src="" alt="" id="pokeImageAfter" width="50px">
+              <p>Próximo</p>
+            </div>
+          </div>
+          
+      </div>
+    </div> 
   </section>
 
 
@@ -155,15 +173,17 @@
     dataType:"json",  
     /* tratamento dos dados que voltaram do webservice */ 
     }).done(function(dados) {  
-        /* carrega os campos do formulario a partir dos campos que voltaram do ws viacep */
+        /* carrega os campos do formulario a partir dos campos que voltaram do ws viaPOKE */
         document.getElementById('name').value = dados.name;
         document.getElementById('exp').value = dados.base_experience;
-        document.getElementById('pokeImage').src = dados.sprites.front_default;
-        document.getElementById('source').value = dados.sprites.front_default;
 
         id = dados.id;
         previous = parseInt(id - 1);
         after = parseInt(id + 1);
+
+        document.getElementById('pokeName').innerHTML = dados.name;
+
+        document.getElementById('pokeImage').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + id + '.png'
         document.getElementById('pokeImagePrevious').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + previous + '.png'
         document.getElementById('pokeImageAfter').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + after + '.png'
 });
