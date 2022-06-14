@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Pokemóns, a série</title>
+
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <!-- progress barstle -->
+  <link rel="stylesheet" href="css/css-circular-prog-bar.css">
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- font wesome stylesheet -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+
+
+
+  <link rel="stylesheet" href="css/css-circular-prog-bar.css">
+
+
+</head>
+
+<body>
+  <div class="top_container sub_pages">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logo.png" alt="">
+            <span>
+              Pikachu!
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html"> Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="about.html"> Sobre </a>
+                </li>
+
+                <li class="nav-item ">
+                  <a class="nav-link" href="personagens.html"> Personagens </a>
+                </li>               
+
+              </ul>
+              <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+            </div>
+        </nav>
+      </div>
+    </header>
+  </div>
+  <!-- end header section -->
+
+
+  <!-- vehicle section -->
+  <section class="vehicle_section layout_padding">
+    <div class="container">
+      <h2 class="main-heading ">
+        Pesquise seu personagem!
+      </h2>
+      <p class="text-center">
+        Conheça os personagens aqui. Clique pelo número e veja todas as características desse personagem!
+      </p>
+    </div>
+    <div>
+      <form name="frmCEP">	
+        Pokemon: <input type="text" name="Pokemon" id="CEP" maxlength="8">	
+        <input type="button" name="btnCEP" value="Pesquisar Poke" onclick="PesquisarPoke(document.frmCEP.CEP.value);">
+        <br> <br>
+        <label>Pokemon name:</label>
+        <input type="text" name="name" id="name" size="60"/> <br><br>
+        <label>Experiencia base:</label>
+        <input type="text" name="exp" id="exp" size="60"/> <br><br>
+        <label>Test source:</label>
+        <input type="text" name="source" id="source" size="60"/> <br><br>
+        </form>
+    
+        <img src="" alt="" id="pokeImagePrevious" width="100px">
+        <img src="" alt="" id="pokeImage" width="120px">
+        <img src="" alt="" id="pokeImageAfter" width="100px">
+    </div>
+  </section>
+
+
+  <!-- vehicle section -->
+
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
+    <p>
+      Copyright &copy; 2022 Alunos Fatec Araras
+      <a href="https://html.design/"></a>
+    </p>
+  </section>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- progreesbar script -->
+
+  </script>
+  <script>
+    // This example adds a marker to indicate the position of Bondi Beach in Sydney,
+    // Australia.
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 11,
+        center: {
+          lat: 40.645037,
+          lng: -73.880224
+        },
+      });
+
+      var image = 'images/maps-and-flags.png';
+      var beachMarker = new google.maps.Marker({
+        position: {
+          lat: 40.645037,
+          lng: -73.880224
+        },
+        map: map,
+        icon: image
+      });
+    }
+
+    function PesquisarPoke(name){	
+    $.ajax({ type: "GET", url: "https://pokeapi.co/api/v2/pokemon/" + name , 
+    dataType:"json",  
+    /* tratamento dos dados que voltaram do webservice */ 
+    }).done(function(dados) {  
+        /* carrega os campos do formulario a partir dos campos que voltaram do ws viacep */
+        document.getElementById('name').value = dados.name;
+        document.getElementById('exp').value = dados.base_experience;
+        document.getElementById('pokeImage').src = dados.sprites.front_default;
+        document.getElementById('source').value = dados.sprites.front_default;
+
+        id = dados.id;
+        previous = parseInt(id - 1);
+        after = parseInt(id + 1);
+        document.getElementById('pokeImagePrevious').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + previous + '.png'
+        document.getElementById('pokeImageAfter').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + after + '.png'
+});
+}
+  </script>
+  <!-- google map js -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap">
+  </script>
+  <!-- end google map js -->
+</body>
+
+</html>
