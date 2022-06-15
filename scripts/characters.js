@@ -69,6 +69,7 @@ function PopulaDados(dados){
     after = parseInt(id + 1);
 
     document.getElementById('pokeName').innerHTML = dados.name;
+    document.getElementById('pokeId').innerHTML = "Número na PokeDex: " + dados.id;
 
     if( dados.abilities[2] ){
         document.getElementById('habilidade1').innerHTML = dados.abilities[0].ability.name;
