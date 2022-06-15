@@ -94,7 +94,7 @@
       <div class="pokeform">
         <form name="frmPoke">	
           Pokemon: <input type="text" name="Pokemon" id="POKE" size="45">	
-          <input type="button" name="btnPOKE" value="Pesquisar Poke" onclick="PesquisarPoke(document.frmPoke.POKE.value);">
+          <input type="button" name="btnPOKE" value="Pesquisar Poke" onclick="PesquisarPoke(document.frmPoke.POKE.value, 'N');">
           <br> <br>
           <label>Pokemon name:</label>
           <input type="text" name="name" id="name" size="60"/> <br><br>
@@ -112,8 +112,8 @@
               <h2 id="pokeName"></h2>
               <div class="tipo">
                 <br>
-                <p id="tipo1" id="tipo1">tipo</p>
-                <p id="tipo2"></p>
+                <strong><p id="tipo1"></p></strong>
+                <strong><p id="tipo2"></p></strong>
               </div>
             </div>
             
@@ -144,57 +144,10 @@
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <!-- progreesbar script -->
 
-  </script>
-  <script>
-    // This example adds a marker to indicate the position of Bondi Beach in Sydney,
-    // Australia.
-    function initMap() {
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 11,
-        center: {
-          lat: 40.645037,
-          lng: -73.880224
-        },
-      });
+  <script src="scripts/characters.js"></script>
 
-      var image = 'images/maps-and-flags.png';
-      var beachMarker = new google.maps.Marker({
-        position: {
-          lat: 40.645037,
-          lng: -73.880224
-        },
-        map: map,
-        icon: image
-      });
-    }
-
-
-    function PesquisarPoke(name){	
-    $.ajax({ type: "GET", url: "https://pokeapi.co/api/v2/pokemon/" + name , 
-    dataType:"json",  
-    /* tratamento dos dados que voltaram do webservice */ 
-    }).done(function(dados) {  
-        /* carrega os campos do formulario a partir dos campos que voltaram do ws viaPOKE */
-        document.getElementById('name').value = dados.name;
-        document.getElementById('exp').value = dados.base_experience;
-
-        id = dados.id;
-        previous = parseInt(id - 1);
-        after = parseInt(id + 1);
-
-        document.getElementById('pokeName').innerHTML = dados.name;
-       var tipo1 = document.getElementById('tipo1').innerHTML = dados.types[0].type.name;
-       var tipo2 = document.getElementById('tipo2').innerHTML = dados.types[1].type.name;
-
-        document.getElementById('pokeImage').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + id + '.png'
-        document.getElementById('pokeImagePrevious').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + previous + '.png'
-        document.getElementById('pokeImageAfter').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + after + '.png'
-});
-}
-  </script>
   <!-- google map js -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap">
-  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
   <!-- end google map js -->
 </body>
 
