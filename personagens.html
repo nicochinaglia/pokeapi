@@ -100,7 +100,6 @@
           <input type="text" name="name" id="name" size="60"/> <br><br>
           <label>Experiencia base:</label>
           <input type="text" name="exp" id="exp" size="60"/> <br><br>
-          <label>Test source:</label>
           </form>
           <div class="pokeTabela">
             <div class="anterior">
@@ -112,8 +111,9 @@
               <img src="" alt="" id="pokeImage" width="200px">
               <h2 id="pokeName"></h2>
               <div class="tipo">
-                <h3 id="tipo1"></h3>
-                <h3 id="tipo2"></h3>
+                <br>
+                <p id="tipo1" id="tipo1">tipo</p>
+                <p id="tipo2"></p>
               </div>
             </div>
             
@@ -168,6 +168,7 @@
       });
     }
 
+
     function PesquisarPoke(name){	
     $.ajax({ type: "GET", url: "https://pokeapi.co/api/v2/pokemon/" + name , 
     dataType:"json",  
@@ -182,6 +183,8 @@
         after = parseInt(id + 1);
 
         document.getElementById('pokeName').innerHTML = dados.name;
+       var tipo1 = document.getElementById('tipo1').innerHTML = dados.types[0].type.name;
+       var tipo2 = document.getElementById('tipo2').innerHTML = dados.types[1].type.name;
 
         document.getElementById('pokeImage').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + id + '.png'
         document.getElementById('pokeImagePrevious').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + previous + '.png'
