@@ -16,7 +16,7 @@ function GerarTime(){
     var oImg = document.createElement("img");
 
     oImg.setAttribute('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + pokeId + '.png');
-    oImg.setAttribute('width', '200px'); 
+    oImg.setAttribute('width', '200px');
     document.getElementById('showPokemon').appendChild(oImg);
 
     pokeName = dados.name;
@@ -26,5 +26,10 @@ function GerarTime(){
     h2.appendChild(textNode);
     document.getElementById('showPokemon').appendChild(h2);
 });
-}  
+}
+
+    divFormat = document.getElementById('showPokemon')
+    divFormat = divFormat.style.marginLeft= "600px";
+    divFormat = divFormat.style.marginRight= "600px";
+
 }
