@@ -39,14 +39,27 @@ function initMap() {
   });
 }
 
+idGlobal = 0;
+
 function PesquisarPoke(name){
 
 $.ajax({ type: "GET", 
          url: "https://pokeapi.co/api/v2/pokemon/" + name , 
          dataType:"json",
 }).done(function(dados) {
+    idGlobal = dados.id;
     PopulaDados(dados);
 });
+}
+
+function Next(){
+  let idAnterior = idGlobal + 1;
+  PesquisarPoke(idAnterior);
+}
+
+function Previous(){
+  let idProximo = idGlobal - 1;
+  PesquisarPoke(idProximo);
 }
 
 function PopulaDados(dados){
