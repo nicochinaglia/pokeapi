@@ -4,17 +4,32 @@ function randomInteger(min, max) {
 
 function GerarTime(){
 
-    for(i = 0; i < 7; i++){
+    for(i = 0; i < 6; i++){
         resultado = randomInteger(1, 989);
         $.ajax({ type: "GET", 
          url: "https://pokeapi.co/api/v2/pokemon/" + resultado , 
          dataType:"json",
 }).done(function(dados) {
     console.log(dados.name);
+    pokeId = dados.id;
 
     var oImg = document.createElement("img");
-    oImg.setAttribute('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + resultado + '.png');
-    document.body.appendChild(oImg);
+
+    oImg.setAttribute('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + pokeId + '.png');
+    oImg.setAttribute('width', '200px');
+    document.getElementById('showPokemon').appendChild(oImg);
+
+    pokeName = dados.name;
+
+    var h2 = document.createElement("h2");
+    var textNode = document.createTextNode(pokeName);
+    h2.appendChild(textNode);
+    document.getElementById('showPokemon').appendChild(h2);
 });
-}  
+}
+
+    divFormat = document.getElementById('showPokemon')
+    divFormat = divFormat.style.marginLeft= "600px";
+    divFormat = divFormat.style.marginRight= "600px";
+
 }

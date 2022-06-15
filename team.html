@@ -43,7 +43,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="team.html">
             <img src="images/logo.png" alt="">
             <span>
               Pikachu!
@@ -66,7 +66,11 @@
 
                 <li class="nav-item ">
                   <a class="nav-link" href="personagens.html"> Personagens </a>
-                </li>               
+                </li>
+                
+                <li class="nav-item ">
+                  <a class="nav-link" href="team.html"> Gerador de times </a>
+                </li>
 
               </ul>
               <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
@@ -92,40 +96,10 @@
     </div>
     <div class="pokeBox">
       <div class="pokeform">
-        <form name="frmPoke">	
-          Pokemon: <input type="text" name="Pokemon" id="POKE" size="45">	
-          <input type="button" name="btnPOKE" value="Pesquisar Poke" onclick="GerarTime();">
-          <br> <br>
-          </form>
-          <div class="pokeTabela">
-            <div class="anterior">
-              <img src="" alt="" id="pokeImagePrevious" width="100px">
-              <p>Anterior</p>
-            </div>
-            
-            <div class="atual">
-              <img src="" alt="" id="pokeImage" width="200px">
-              <h2 id="pokeName"></h2>
-              <div class="tipo">
-                <br>
-                <strong><p id="tipo1"></p></strong>
-                <strong><p id="tipo2"></p></strong>
-              </div>
-            </div>
-            
-            <div class="proximo">
-              <img src="" alt="" id="pokeImageAfter" width="100px">
-              <p>Próximo</p>
-            </div>
-          </div>
-          <div class="pokeInfo">
-            <strong><p>Habilidades</p></strong>
-            <p id="habilidade1"></p>
-            <p id="habilidade2"></p>
-            <p id="habilidade3"></p>
-          </div>
-          
+        <button type="button" name="btnPOKE" value="Pesquisar Poke" onclick="GerarTime(); this.onclick=null;">Crie meu time!</button>  
+        <br><br>
       </div>
+      <div id="showPokemon"></div>
     </div> 
   </section>
 
@@ -147,10 +121,6 @@
   <!-- progreesbar script -->
 
   <script src="scripts/team.js"></script>
-
-  <!-- google map js -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
-  <!-- end google map js -->
 </body>
 
 </html>
