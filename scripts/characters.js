@@ -39,7 +39,6 @@ function initMap() {
   });
 }
 
-
 function PesquisarPoke(name){
 
 $.ajax({ type: "GET", 
@@ -51,10 +50,7 @@ $.ajax({ type: "GET",
 }
 
 function PopulaDados(dados){
-    document.getElementById('name').value = dados.name;
-    document.getElementById('exp').value = dados.base_experience;
 
-    
     id = dados.id;
     previous = parseInt(id - 1);
     after = parseInt(id + 1);

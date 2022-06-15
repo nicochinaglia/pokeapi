@@ -94,16 +94,12 @@
       <div class="pokeform">
         <form name="frmPoke">	
           Pokemon: <input type="text" name="Pokemon" id="POKE" size="45">	
-          <input type="button" name="btnPOKE" value="Pesquisar Poke" onclick="PesquisarPoke(document.frmPoke.POKE.value, 'N');">
+          <input type="button" name="btnPOKE" value="Pesquisar Poke" onclick="PesquisarPoke(document.frmPoke.POKE.value);">
           <br> <br>
-          <label>Pokemon name:</label>
-          <input type="text" name="name" id="name" size="60"/> <br><br>
-          <label>Experiencia base:</label>
-          <input type="text" name="exp" id="exp" size="60"/> <br><br>
           </form>
           <div class="pokeTabela">
             <div class="anterior">
-              <img src="" alt="" id="pokeImagePrevious" width="50px">
+              <img src="" alt="" id="pokeImagePrevious" width="100px">
               <p>Anterior</p>
             </div>
             
@@ -118,7 +114,7 @@
             </div>
             
             <div class="proximo">
-              <img src="" alt="" id="pokeImageAfter" width="50px">
+              <img src="" alt="" id="pokeImageAfter" width="100px">
               <p>Próximo</p>
             </div>
           </div>
