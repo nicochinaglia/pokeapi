@@ -462,3 +462,9 @@ a:focus {
   margin-top: 100px;
   margin-right: 400px;
 }
+
+.showPokemon {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}

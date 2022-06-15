@@ -14,9 +14,17 @@ function GerarTime(){
     pokeId = dados.id;
 
     var oImg = document.createElement("img");
+
     oImg.setAttribute('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + pokeId + '.png');
     oImg.setAttribute('width', '200px'); 
-    document.body.appendChild(oImg);
+    document.getElementById('showPokemon').appendChild(oImg);
+
+    pokeName = dados.name;
+
+    var h2 = document.createElement("h2");
+    var textNode = document.createTextNode(pokeName);
+    h2.appendChild(textNode);
+    document.getElementById('showPokemon').appendChild(h2);
 });
 }  
 }
