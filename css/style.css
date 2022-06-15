@@ -439,3 +439,26 @@ a:focus {
 }
 
 /* end footer section*/
+
+.pokeform {
+  text-align: center;
+}
+
+#pokeImg {
+  width: 1000px;
+}
+
+.pokeTabela {
+  display: flex;
+  justify-content: space-between;
+}
+
+.anterior {
+  margin-top: 100px;
+  margin-left: 400px;
+}
+
+.proximo {
+  margin-top: 100px;
+  margin-right: 400px;
+}
