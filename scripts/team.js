@@ -4,6 +4,8 @@ function randomInteger(min, max) {
 
 function GerarTime(){
 
+    document.getElementById('gerarPoke').onclick = null;
+
     for(i = 0; i < 6; i++){
         resultado = randomInteger(1, 989);
         $.ajax({ type: "GET", 
