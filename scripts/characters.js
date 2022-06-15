@@ -57,6 +57,20 @@ function PopulaDados(dados){
 
     document.getElementById('pokeName').innerHTML = dados.name;
 
+    if( dados.abilities[2] ){
+        document.getElementById('habilidade1').innerHTML = dados.abilities[0].ability.name;
+        document.getElementById('habilidade2').innerHTML = dados.abilities[1].ability.name;
+        document.getElementById('habilidade3').innerHTML = dados.abilities[2].ability.name;
+    }else if( dados.abilities[1] ){
+        document.getElementById('habilidade1').innerHTML = dados.abilities[0].ability.name;
+        document.getElementById('habilidade2').innerHTML = dados.abilities[1].ability.name;
+        document.getElementById('habilidade3').innerHTML = "";
+    }else{
+        document.getElementById('habilidade1').innerHTML = dados.abilities[0].ability.name;
+        document.getElementById('habilidade2').innerHTML = "";
+        document.getElementById('habilidade3').innerHTML = "";
+    }
+
     if( dados.types[1] ){
         var tipo1 = document.getElementById('tipo1').innerHTML = dados.types[0].type.name;
         var tipo2 = document.getElementById('tipo2').innerHTML = dados.types[1].type.name;

@@ -37,7 +37,7 @@
 
 </head>
 
-<body>
+<body id="body">
   <div class="top_container sub_pages">
     <!-- header section strats -->
     <header class="header_section">
@@ -84,17 +84,17 @@
   <section class="vehicle_section layout_padding">
     <div class="container">
       <h2 class="main-heading ">
-        Pesquise seu personagem!
+        Gerador de times
       </h2>
       <p class="text-center">
-        Conheça os personagens aqui. Insira o nome do pokémon ou digite um número de 1 à 898!
+        Clique no botão para gerar um time randômico de pokémons
       </p>
     </div>
     <div class="pokeBox">
       <div class="pokeform">
         <form name="frmPoke">	
           Pokemon: <input type="text" name="Pokemon" id="POKE" size="45">	
-          <input type="button" name="btnPOKE" value="Pesquisar Poke" onclick="PesquisarPoke(document.frmPoke.POKE.value);">
+          <input type="button" name="btnPOKE" value="Pesquisar Poke" onclick="GerarTime();">
           <br> <br>
           </form>
           <div class="pokeTabela">
@@ -146,7 +146,7 @@
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <!-- progreesbar script -->
 
-  <script src="scripts/characters.js"></script>
+  <script src="scripts/team.js"></script>
 
   <!-- google map js -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
