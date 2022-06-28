@@ -463,8 +463,11 @@ a:focus {
   margin-right: 400px;
 }
 
-.showPokemon {
+#showPokemon {
   display: flex;
   justify-content: space-between;
   text-align: center;
+  max-width: 750px;
+  flex-wrap: wrap;
+  margin: auto;
 }

@@ -2,36 +2,40 @@ function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function GerarTime(){
+function pokeDiv(pokemonData) {
+    console.log(pokemonData);
+    const div = document.createElement('div');
+    div.style.width = '200px'
+    var oImg = document.createElement("img");
+    const gotShiny = randomInteger(1, 10) === 1 //8192
+    console.log('gotshiny', gotShiny)
+    const image = gotShiny ? pokemonData.sprites.front_shiny : pokemonData.sprites.front_default
+    oImg.setAttribute('src', image);
+    oImg.setAttribute('width', '200px');
+    div.appendChild(oImg);
 
-    document.getElementById('gerarPoke').onclick = null;
+    pokeName = (gotShiny ? 'Shiny ' : '' ) + pokemonData.name;
+
+    var h2 = document.createElement("h2");
+    var textNode = document.createTextNode(pokeName);
+    h2.appendChild(textNode);
+    div.appendChild(h2);
+    return div;
+}
+
+function GerarTime(){
+    console.log('click generate')
+    document.getElementById('showPokemon').innerHTML = ''
+    //document.getElementById('gerarPoke').onclick = null;
 
     for(i = 0; i < 6; i++){
         resultado = randomInteger(1, 989);
         $.ajax({ type: "GET", 
          url: "https://pokeapi.co/api/v2/pokemon/" + resultado , 
          dataType:"json",
-}).done(function(dados) {
-    console.log(dados.name);
-    pokeId = dados.id;
-
-    var oImg = document.createElement("img");
-
-    oImg.setAttribute('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + pokeId + '.png');
-    oImg.setAttribute('width', '200px');
-    document.getElementById('showPokemon').appendChild(oImg);
-
-    pokeName = dados.name;
-
-    var h2 = document.createElement("h2");
-    var textNode = document.createTextNode(pokeName);
-    h2.appendChild(textNode);
-    document.getElementById('showPokemon').appendChild(h2);
-});
-}
-
-    divFormat = document.getElementById('showPokemon')
-    divFormat = divFormat.style.marginLeft= "600px";
-    divFormat = divFormat.style.marginRight= "600px";
+        }).done(function(dados) {
+            document.getElementById('showPokemon').appendChild(pokeDiv(dados));
+        });
+    }
 
 }
