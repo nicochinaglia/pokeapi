@@ -23,19 +23,25 @@ function pokeDiv(pokemonData) {
     return div;
 }
 
+function getPoke(id) {
+    return new Promise((resolve, reject) => {
+        $.ajax({ type: "GET", 
+        url: "https://pokeapi.co/api/v2/pokemon/" + id , 
+        dataType:"json",
+       }).done(resolve)
+       .fail(_ => resolve(null))
+    })
+}
+
 function GerarTime(){
     console.log('click generate')
     document.getElementById('showPokemon').innerHTML = ''
     //document.getElementById('gerarPoke').onclick = null;
-
-    for(i = 0; i < 6; i++){
-        resultado = randomInteger(1, 989);
-        $.ajax({ type: "GET", 
-         url: "https://pokeapi.co/api/v2/pokemon/" + resultado , 
-         dataType:"json",
-        }).done(function(dados) {
-            document.getElementById('showPokemon').appendChild(pokeDiv(dados));
-        });
-    }
-
+     Promise.all([...Array(10)].map(() => {
+        return getPoke(randomInteger(1, 989))
+      })).then(pokes => {
+        const pokesdivs = pokes.filter(poke => poke !== null).map(pokeDiv)
+        pokesdivs.length = 6
+        pokesdivs.forEach(div => document.getElementById('showPokemon').appendChild(div))
+      });
 }
