@@ -29,7 +29,7 @@ function initMap() {
   });
 
   var image = 'images/maps-and-flags.png';
-  var beachMarker = new google.maps.Marker({
+  new google.maps.Marker({
     position: {
       lat: 40.645037,
       lng: -73.880224
@@ -40,6 +40,11 @@ function initMap() {
 }
 
 idGlobal = 0;
+
+function searchSubmit(form, pokeId) {
+  form.preventDefault()
+  PesquisarPoke(pokeId)
+}
 
 function PesquisarPoke(name){
 
@@ -53,13 +58,11 @@ $.ajax({ type: "GET",
 }
 
 function Next(){
-  let idAnterior = idGlobal + 1;
-  PesquisarPoke(idAnterior);
+  PesquisarPoke(idGlobal + 1);
 }
 
 function Previous(){
-  let idProximo = idGlobal - 1;
-  PesquisarPoke(idProximo);
+  PesquisarPoke(idGlobal - 1);
 }
 
 function PopulaDados(dados){
@@ -71,34 +74,19 @@ function PopulaDados(dados){
     document.getElementById('pokeName').innerHTML = dados.name;
     document.getElementById('pokeId').innerHTML = "Número na PokeDex: " + dados.id;
 
-    if( dados.abilities[2] ){
-        document.getElementById('habilidade1').innerHTML = dados.abilities[0].ability.name;
-        document.getElementById('habilidade2').innerHTML = dados.abilities[1].ability.name;
-        document.getElementById('habilidade3').innerHTML = dados.abilities[2].ability.name;
-    }else if( dados.abilities[1] ){
-        document.getElementById('habilidade1').innerHTML = dados.abilities[0].ability.name;
-        document.getElementById('habilidade2').innerHTML = dados.abilities[1].ability.name;
-        document.getElementById('habilidade3').innerHTML = "";
-    }else{
-        document.getElementById('habilidade1').innerHTML = dados.abilities[0].ability.name;
-        document.getElementById('habilidade2').innerHTML = "";
-        document.getElementById('habilidade3').innerHTML = "";
-    }
 
-    if( dados.types[1] ){
-        var tipo1 = document.getElementById('tipo1').innerHTML = dados.types[0].type.name;
-        var tipo2 = document.getElementById('tipo2').innerHTML = dados.types[1].type.name;
-    }else{
-        var tipo1 = document.getElementById('tipo1').innerHTML = dados.types[0].type.name;
-        var tipo2 = document.getElementById('tipo2').innerHTML = "";
-    }
-  
-    console.log(tipo2);
+      document.getElementById('habilidade1').innerHTML = dados.abilities[0].ability.name;
+      dados.abilities[1] && (document.getElementById('habilidade2').innerHTML = dados.abilities[1].ability.name);
+      dados.abilities[2] && (document.getElementById('habilidade3').innerHTML = dados.abilities[2].ability.name);
+
+      document.getElementById('tipo1').innerHTML = dados.types[0].type.name;
+      document.getElementById('tipo1').style.backgroundColor = tipeColor.get(dados.types[0].type.name);
+      if (dados.types[1]) {
+        document.getElementById('tipo2').innerHTML = dados.types[1].type.name;
+        document.getElementById('tipo2').style.backgroundColor = tipeColor.get(dados.types[1].type.name);
+      } 
 
     document.getElementById('pokeImage').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + id + '.png'
     document.getElementById('pokeImagePrevious').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + previous + '.png'
     document.getElementById('pokeImageAfter').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + after + '.png'
-
-    document.getElementById('tipo1').style.backgroundColor = tipeColor.get(tipo1);
-    document.getElementById('tipo2').style.backgroundColor = tipeColor.get(tipo2);
 }
