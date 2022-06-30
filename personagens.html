@@ -96,9 +96,9 @@
     </div>
     <div class="pokeBox">
       <div class="pokeform">
-        <form name="frmPoke">	
+        <form name="frmPoke" onsubmit="searchSubmit(event, document.frmPoke.POKE.value);">	
           Pokemon: <input type="text" name="Pokemon" id="POKE" size="45">	
-          <input type="button" name="btnPOKE" value="Pesquisar Poke" onclick="PesquisarPoke(document.frmPoke.POKE.value);">
+          <input type="submit" name="btnPOKE" value="Pesquisar Poke">
           <br><br>
           </form>
           <div class="pokeTabela">
